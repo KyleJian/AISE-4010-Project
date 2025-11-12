@@ -1,4 +1,4 @@
-# MAiSTRO: The Classical Music Composition Model
+# AISE 4010 Course Project
 
 This project is a deep learning-based music composition system using Long Short-Term Memory (LSTM) neural networks. The model learns musical patterns from MIDI files and generates new music based on the learned sequences. This project is associated with the 'AISE 4010 - Deep Learning for Time Series Data' course and contributed by:
 - Richard Augustine
