@@ -175,6 +175,8 @@ def prepare_sequences(notes, n_vocab):
     # convert the output values into a one-hot encoded format
     network_output = utils.to_categorical(network_output)
 
+    pd.DataFrame(network_input.reshape(len(network_input), -1)[:5]).to_csv("sample_sequences.csv", index=False)
+
     return (network_input, network_output)  # return the processed input and output sequences
 
 def create_network(network_input, n_vocab):
@@ -235,17 +237,50 @@ def train(model, network_input, network_output):
     )
 
     # Then pass the callback to model.fit()
-    model.fit(network_input, network_output,
-              epochs=5,
+    history = model.fit(network_input, network_output,
+              epochs=30,
               batch_size=64,
               callbacks=[checkpoint]
     )
+
+    # plot loss
+    plt.figure(figsize=(8, 5))
+    plt.plot(history.history["loss"])
+    plt.title("Training Loss Over Time")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.tight_layout()
+    plt.savefig("training_loss.png")
+    plt.close()
 
 # load all musical notes, chords, and rests from midi files
 notes = get_notes()
 
 # get the total number of unique pitch names (distinct notes, chords, and rests)
 n_vocab = len(set(notes))  # converts list to set to remove duplicates, then gets its length
+
+# count frequencies
+counter = Counter(notes)
+
+# top 50 most common
+top = counter.most_common(50)
+labels = [x[0] for x in top]
+counts = [x[1] for x in top]
+
+# bar chart
+plt.figure(figsize=(10, 6))
+plt.bar(range(len(counts)), counts)
+plt.xticks(range(len(counts)), labels, rotation=90)
+plt.title("Top 50 Notes in Dataset")
+plt.tight_layout()
+plt.savefig("note_distribution.png")
+plt.close()
+
+# write full counts to csv for inspection
+df = pd.DataFrame(counter.items(), columns=["note", "count"])
+df.to_csv("note_distribution.csv", index=False)
+
+print(df.head(20))
 
 print(f"Vocabulary size (n_vocab): {n_vocab}")
 
