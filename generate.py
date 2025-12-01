@@ -130,15 +130,15 @@ def create_network_add_weights(network_input, n_vocab):
     # load pre-trained weights to avoid training from scratch
     # this allows the model to generate music based on previously learned patterns
 
-    # find the most recent MIDI file in the directory
-    model_weights = [f for f in os.listdir() if f.endswith(".h5")]
+    # find the most recent model weight file from training in the directory
+    model_weights = [f for f in os.listdir() if f.endswith(".keras")]
     if not model_weights:
         raise FileNotFoundError("No model weights files found in the directory.")
-
-    # get the most recently created/modified MIDI file
+    
+    # get the most recently created/modified model weight file
     latest_model_weights = max(model_weights, key=os.path.getctime)
 
-    print(f"Processing most recent h5 file: {latest_model_weights}")
+    print(f"Processing most recent .keras file: {latest_model_weights}")
     model.load_weights(latest_model_weights)
 
     return model  # return the model with loaded weights
