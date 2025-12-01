@@ -60,7 +60,7 @@ def compute_cosine_similarity(counts1, counts2):
 
 # paths (update these)
 dataset_folder = "dataset"  # folder containing MIDI dataset
-generated_midi = "20e4.mid"  # path to generated MIDI file
+generated_midi = "35e.mid"  # path to generated MIDI file
 
 # compute note distribution for the generated MIDI
 generated_counts = compute_note_frequencies(generated_midi)
@@ -68,7 +68,7 @@ generated_counts = compute_note_frequencies(generated_midi)
 # loop through all dataset MIDI files and compare
 similarity_results = []
 
-for dataset_file in glob.glob(f"{dataset_folder}/*.mid"):
+for dataset_file in glob.glob(f"{dataset_folder}/*.midi"):
     dataset_counts = compute_note_frequencies(dataset_file)
     similarity_score = compute_cosine_similarity(dataset_counts, generated_counts)
 
