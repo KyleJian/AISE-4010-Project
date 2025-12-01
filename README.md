@@ -60,6 +60,7 @@ Which uses the following scripts:
 - `midi_to_audio.py` to convert the new midi into audio.
 
 ## Notes & Troubleshooting
+- **Python 3.10.xx is recommended to minimize impacts within packages that need to be installed. Python 3.10.19 is tested working during development.**
 - Before running the model, make sure you have access to a GPU! CPU training is heavily discouraged due to time and resource-intensity (we recommend Google Colab for free GPU use, Jupyter Notebook versions of train.py and generate.py are provided in this repository).
 - We found that 200+ MIDI files provide the best results (a good sign is to check the size of the resulting 'notes' file: if it's 1-2Mb, you have a good amount of data!)
 - We found training for 30 epochs on a 200-file dataset works best, but this number can be different based on the dataset.
