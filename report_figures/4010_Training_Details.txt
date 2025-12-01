@@ -1,0 +1,45 @@
+skipping midi parsing - 'data/notes' already exists.
+Vocabulary size (n_vocab): 358
+Total training sequences generated: 57077
+Epoch 1/5
+c:\Users\harol\miniconda3\envs\tf3\lib\site-packages\keras\initializers\initializers_v2.py:120: UserWarning: The initializer GlorotNormal is unseeded and being called multiple times, which will return identical values  each time (even if the initializer is unseeded). Please update your code to provide a seed to the initializer, or avoid using the same initalizer instance more than once.
+  warnings.warn(
+892/892 [==============================] - 362s 398ms/step - loss: 4.6812
+Epoch 2/5
+892/892 [==============================] - 344s 385ms/step - loss: 4.5933
+Epoch 3/5
+892/892 [==============================] - 358s 401ms/step - loss: 4.4909
+Epoch 4/5
+892/892 [==============================] - 334s 375ms/step - loss: 4.3887
+Epoch 5/5
+886/892 [============================>.] - ETA: 2s - loss: 4.2765
+Epoch 5: saving model to c:\Users\harol\Downloads\lstm-music-composer-main\jupyter_notebooks\weights-epoch005-4.2764.keras
+892/892 [==============================] - 358s 401ms/step - loss: 4.2771
+Model: "sequential_6"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ bidirectional_5 (Bidirectio  (None, 100, 1024)        2105344   
+ nal)                                                            
+                                                                 
+ seq_self_attention_5 (SeqSe  (None, 100, 1024)        65601     
+ lfAttention)                                                    
+                                                                 
+ dropout_10 (Dropout)        (None, 100, 1024)         0         
+                                                                 
+ lstm_11 (LSTM)              (None, 100, 512)          3147776   
+                                                                 
+ dropout_11 (Dropout)        (None, 100, 512)          0         
+                                                                 
+ flatten_5 (Flatten)         (None, 51200)             0         
+                                                                 
+ dense_5 (Dense)             (None, 358)               18329958  
+                                                                 
+ activation_5 (Activation)   (None, 358)               0         
+                                                                 
+=================================================================
+Total params: 23,648,679
+Trainable params: 23,648,679
+Non-trainable params: 0
+_________________________________________________________________
+None
